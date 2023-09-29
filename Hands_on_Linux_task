@@ -1,1 +1,85 @@
+Hands-On-task-Linux
+
+As a junior DevOps engineer, you have a task from Team Lead.
+
+A client wants to have a file filled with commands which they can execute at their side to achieve the next things:
+1. All commands below should be executed by user "admin".
+2. Create an archive from contents of /etc/nginx/ directory.
+3. Move this archive to /opt/archive/ directory.
+4. Outputs of all commands should be stored in /opt/archive/output.txt file and must be understandable - the file is created for clients' needs. The "echo" command could help you with that.
+5. /opt/archive and all files inside must be owned by user "director" and group "maintainer".
+
+Please keep in mind next things:
+
+- Neither Nginx nor required users or groups are on the newly created instance by default, add them manually. 
+- Both  output and command files must well-commented to explain what is going on.
+- Pay attention to this page, especially Security Groups (AWS security policy#SecurityGroups)
+- Change default 22 port inbound rule to HTTPS (443) and source IP address should be your public IP Address.
+- Read AWS Instance creation steps to learn how to create an AWS instance, which AMI/IAM to use, etc.
+________________________________________________________________
+
+# print working directory
+pwd 
+# check user
+whoami
+# create user admin
+sudo useradd admin
+# add user admin to admin group
+sudo useradd -g admin admin
+# set password for user admin
+sudo passwd admin
+# check in which groups user is
+groups admin
+# create user director
+sudo useradd director
+# create group maintainer
+sudo groupadd maintainer
+# add user director to maintainer group
+sudo usermod -aG maintainer director
+# add user admin to maintainer group
+sudo usermod -aG maintainer admin
+# check in which groups users are
+groups admin
+groups director
+# list all system users
+sudo cat /etc/passwd
+
+# switch user
+su - admin
+# check user
+whoami
+
+# update packages
+sudo apt update
+# sudo install nginx
+sudo apt install nginx -y
+
+# list all contents of /etc/nginx/ directory
+la -al /etc/nginx/
+# change directory to /etc/nginx/
+cd /etc/nginx/			
+# create archive of all files from /etc/nginx/*
+sudo tar czvf compressed.tar.gz /etc/nginx/*
+# to check what is in the archive
+tar -tf compressed.tar.gz
+
+# check what is in /opt directory
+ls -al /opt
+# create subdirectory /opt/archive
+mkdir /opt/archive
+
+# move archive to /opt/archive
+sudo mv compressed.tar.gz /opt/archive
+# change directory to /opt/archive
+cd /opt/archive
+# create file
+nano output.txt	
+# save outputs of all commands in output.txt file
+ls -al >> output.txt
+# print out content of output file
+cat output.txt
+
+# set user director and group maintainer of the directory and subdirectories /opt/archive
+sudo chown -R director:maintainer /opt/archive/	
+
 
