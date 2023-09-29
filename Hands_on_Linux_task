@@ -19,47 +19,87 @@ Please keep in mind next things:
 ________________________________________________________________
 
 # print working directory
-pwd 
-# check user
-whoami
-# create user admin
-sudo useradd admin
-# add user admin to admin group
-sudo useradd -g admin admin
-# set password for user admin
-sudo passwd admin
+pwd      
+outcome: /var/snap/amazon-ssm-agent/6312
+
+# check the user
+whoami   
+outcome: ssm-user
+
+# create user 'admin'
+sudo useradd admin      
+outcome: seradd: group admin exists - if you want to add this user to that group, use -g.
+
+# add user 'admin' to 'admin' group
+sudo useradd -g admin admin   
+outcome: 'empty'
+
+# set password for user 'admin'
+sudo passwd admin      
+outcome: passwd: password updated successfully
+
 # check in which groups user is
 groups admin
-# create user director
+outcome: admin : admin
+
+# create user 'director'
 sudo useradd director
-# create group maintainer
+outcome: 'empty'
+
+# create group 'maintainer'
 sudo groupadd maintainer
-# add user director to maintainer group
+outcome: 'empty'
+
+# add user 'director' to 'maintainer' group
 sudo usermod -aG maintainer director
-# add user admin to maintainer group
+outcome: 'empty'
+# add user 'admin' to 'maintainer' group
 sudo usermod -aG maintainer admin
+outcome: 'empty'
+
 # check in which groups users are
 groups admin
+outcome: admin : admin maintainer
 groups director
+outcome: director : director maintainer
+
 # list all system users
 sudo cat /etc/passwd
+outcome:
+ssm-user:x:1001:1001::/home/ssm-user:/bin/sh
+admin:x:1002:116::/home/admin:/bin/sh
+director:x:1003:1003::/home/director:/bin/sh
 
 # switch user
 su - admin
+oucome: Password:
+
 # check user
 whoami
+outcome: admin
 
 # update packages
 sudo apt update
+outcome:
+154 packages can be upgraded. Run 'apt list --upgradable' to see them.
+
 # sudo install nginx
 sudo apt install nginx -y
+# check if nginx is installed
+which nginx
+outcome : /usr/sbin/nginx
 
 # list all contents of /etc/nginx/ directory
 la -al /etc/nginx/
+
 # change directory to /etc/nginx/
-cd /etc/nginx/			
+cd /etc/nginx/
+pwd
+outcome: /etc/nginx
 # create archive of all files from /etc/nginx/*
 sudo tar czvf compressed.tar.gz /etc/nginx/*
+outcome: -rw-r--r--   1 root root  6788 Sep 29 09:25 compressed.tar.gz
+
 # to check what is in the archive
 tar -tf compressed.tar.gz
 
@@ -67,13 +107,25 @@ tar -tf compressed.tar.gz
 ls -al /opt
 # create subdirectory /opt/archive
 mkdir /opt/archive
+outcomme: drwxr-xr-x  2 root     root   4096 Sep 29 09:27 archive
 
 # move archive to /opt/archive
 sudo mv compressed.tar.gz /opt/archive
+ls -al /opt/archive
+outcome: -rw-r--r-- 1 root root 6788 Sep 29 09:25 compressed.tar.gz
+
+
 # change directory to /opt/archive
 cd /opt/archive
+pwd
+outcome: /opt/archive
+
 # create file
-nano output.txt	
+sudo touch output.txt
+outcome: -rw-r--r-- 1 root root    0 Sep 29 09:34 output.txt
+# allow all to write in the file
+sudo chmod a+w output.txt
+nano output.txt
 # save outputs of all commands in output.txt file
 ls -al >> output.txt
 # print out content of output file
@@ -81,5 +133,6 @@ cat output.txt
 
 # set user director and group maintainer of the directory and subdirectories /opt/archive
 sudo chown -R director:maintainer /opt/archive/	
-
+-rw-r--r-- 1 director maintainer 6788 Sep 29 09:25 compressed.tar.gz
+-rw-rw-rw- 1 director maintainer  217 Sep 29 09:40 output.txt
 
