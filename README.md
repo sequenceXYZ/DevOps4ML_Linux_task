@@ -14,7 +14,8 @@ A client wants to have a file filled with commands which they can execute at the
 
 Please keep in mind next things:
 
-- Neither Nginx nor required users or groups are on the newly created instance by default, add them manually. Both output and command files must well-commented to explain what is going on.  
+- Neither Nginx nor required users or groups are on the newly created instance by default, add them manually.
+- Both output and command files must well-commented to explain what is going on.  
 - Pay attention to this page, especially Security Groups (AWS security policy#SecurityGroups)  
 - Change default 22 port inbound rule to HTTPS (443) and source IP address should be your public IP Address.  
 - Read AWS Instance creation steps to learn how to create an AWS instance, which AMI/IAM to use, etc.  
