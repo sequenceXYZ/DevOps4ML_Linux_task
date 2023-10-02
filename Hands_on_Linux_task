@@ -53,13 +53,10 @@ outcome: 'empty'
 # add user 'director' to 'maintainer' group
 sudo usermod -aG maintainer director
 outcome: 'empty'
-# add user 'admin' to 'maintainer' group
-sudo usermod -aG maintainer admin
-outcome: 'empty'
 
 # check in which groups users are
 groups admin
-outcome: admin : admin maintainer
+outcome: admin : admin
 groups director
 outcome: director : director maintainer
 
@@ -80,54 +77,35 @@ outcome: admin
 
 # update packages
 sudo apt update
-outcome:
-154 packages can be upgraded. Run 'apt list --upgradable' to see them.
-
 # sudo install nginx
 sudo apt install nginx -y
 # check if nginx is installed
 which nginx
 outcome : /usr/sbin/nginx
 
+#create directory /opt/archive
+sudo mkdir /opt/archive
+outcome: drwxr-xr-x  2 root     root   4096 Oct  2 08:40 archive
+
+# edit permissions
+sudo chmod 773 /opt/archive
+drwxrwx--x  2 root     root   4096 Oct  2 08:40 archive
+
 # list all contents of /etc/nginx/ directory
-la -al /etc/nginx/
+ls -al /etc/nginx/
 
-# change directory to /etc/nginx/
-cd /etc/nginx/
-pwd
-outcome: /etc/nginx
 # create archive of all files from /etc/nginx/*
-sudo tar czvf compressed.tar.gz /etc/nginx/*
-outcome: -rw-r--r--   1 root root  6788 Sep 29 09:25 compressed.tar.gz
+sudo -u admin tar czvf /opt/archive/compressed.tar.gz /etc/nginx/*
+outcome: -rw-rw-r-- 1 admin admin 6786 Oct  2 10:10 compressed.tar.gz
 
-# to check what is in the archive
-tar -tf compressed.tar.gz
-
-# check what is in /opt directory
-ls -al /opt
-# create subdirectory /opt/archive
-mkdir /opt/archive
-outcomme: drwxr-xr-x  2 root     root   4096 Sep 29 09:27 archive
-
-# move archive to /opt/archive
-sudo mv compressed.tar.gz /opt/archive
-ls -al /opt/archive
-outcome: -rw-r--r-- 1 root root 6788 Sep 29 09:25 compressed.tar.gz
-
-
-# change directory to /opt/archive
-cd /opt/archive
-pwd
-outcome: /opt/archive
-
-# create file
+# create file in /opt/archive
 sudo touch output.txt
-outcome: -rw-r--r-- 1 root root    0 Sep 29 09:34 output.txt
+outcome: -rw-r----- 1 admin admin    0 Oct  2 11:27 output.txt
 # allow all to write in the file
 sudo chmod a+w output.txt
 nano output.txt
 # save outputs of all commands in output.txt file
-ls -al >> output.txt
+echo " " >> output.txt
 # print out content of output file
 cat output.txt
 
