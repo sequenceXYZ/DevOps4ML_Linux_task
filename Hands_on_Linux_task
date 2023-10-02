@@ -137,9 +137,9 @@ sudo chown -R director:maintainer /opt/archive/
 -rw-rw-rw- 1 director maintainer  217 Sep 29 09:40 output.txt
 ______________________________________________________________
 # Tips from TL:
-/*date
+date
 date +%F
 date +%F-%T
-sudo  -u admin tar czf /opt/archieve/compressed-$(date +%F-%T).tar.gz /etc/nginx
-crontab */
+sudo -u admin tar czf /opt/archieve/compressed-$(date +%F-%T).tar.gz /etc/nginx
+crontab
 
