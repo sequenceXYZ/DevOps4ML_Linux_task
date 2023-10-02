@@ -91,9 +91,6 @@ outcome: drwxr-xr-x  2 root     root   4096 Oct  2 08:40 archive
 sudo chmod 773 /opt/archive
 drwxrwx-wx  2 root     root   4096 Oct  2 08:45 archive
 
-# list all contents of /etc/nginx/ directory
-ls -al /etc/nginx/
-
 # create archive of all files from /etc/nginx/*
 sudo -u admin tar czvf /opt/archive/compressed.tar.gz /etc/nginx/*
 outcome: -rw-rw-r-- 1 admin admin 6786 Oct  2 09:10 compressed.tar.gz
@@ -111,8 +108,8 @@ cat output.txt
 
 # set user director and group maintainer of the directory and subdirectories /opt/archive
 sudo chown -R director:maintainer /opt/archive/	
--rw-r--r-- 1 director maintainer 6788 Sep 29 09:25 compressed.tar.gz
--rw-rw-rw- 1 director maintainer  217 Sep 29 09:40 output.txt
+-rw-rw-r-- 1 director maintainer 6786 Oct  2 12:25 compressed.tar.gz
+-rwxrwx-wx 1 director maintainer    0 Oct  2 12:31 output.txt
 ______________________________________________________________
 # Tips from TL:
 date
