@@ -28,7 +28,7 @@ outcome: ssm-user
 
 # create user 'admin'
 sudo useradd admin      
-outcome: seradd: group admin exists - if you want to add this user to that group, use -g.
+outcome: useradd: group admin exists - if you want to add this user to that group, use -g.
 
 # add user 'admin' to 'admin' group
 sudo useradd -g admin admin   
@@ -135,4 +135,11 @@ cat output.txt
 sudo chown -R director:maintainer /opt/archive/	
 -rw-r--r-- 1 director maintainer 6788 Sep 29 09:25 compressed.tar.gz
 -rw-rw-rw- 1 director maintainer  217 Sep 29 09:40 output.txt
+______________________________________________________________
+# Tips from TL:
+/*date
+date +%F
+date +%F-%T
+sudo  -u admin tar czf /opt/archieve/compressed-$(date +%F-%T).tar.gz /etc/nginx
+crontab */
 
