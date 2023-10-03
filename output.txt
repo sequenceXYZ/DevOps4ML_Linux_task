@@ -1,5 +1,34 @@
+# create user 'admin'
+sudo useradd admin      
+
+# add user 'admin' to 'admin' group
+sudo useradd -g admin admin   
+
+# set password for user 'admin'
+sudo passwd admin      
+
+# create user 'director'
+sudo useradd director
+
+# create group 'maintainer'
+sudo groupadd maintainer
+
+# add user 'director' to 'maintainer' group
+sudo usermod -aG maintainer director
+
 # switch to 'admin' user
 sudo su - admin
+
+# update packages
+sudo apt update
+# sudo install nginx
+sudo apt install nginx -y
+
+#create directory /opt/archive
+sudo mkdir /opt/archive
+
+# edit permissions
+sudo chmod 773 /opt/archive
 
 # create an archive of /etc/nginx/* directory in /opt/archive
 sudo -u admin tar czvf /opt/archive/compressed.tar.gz /etc/nginx/*
