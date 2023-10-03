@@ -85,7 +85,7 @@ outcome: -rw-r----- 1 admin admin    0 Oct  2 11:27 output.txt
 sudo chmod 775 output.txt
 nano output.txt
 # save outputs of all commands in output.txt file
-echo " " >> output.txt
+tail /var/log/auth.log | tee -a output.txt
 # print out content of output file
 cat output.txt
 
