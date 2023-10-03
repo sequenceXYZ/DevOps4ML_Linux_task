@@ -95,7 +95,7 @@ echo " " >> output.txt
 cat output.txt
 
 # set user director and group maintainer of the directory and subdirectories /opt/archive
-sudo chown -R director:maintainer /opt/archive/	
+sudo -u admin chown -R director:maintainer /opt/archive/
 -rwxrwxr-x 1 director maintainer 6786 Oct  2 12:25 compressed.tar.gz
 -rwxrwx-wx 1 director maintainer    0 Oct  2 12:31 output.txt
 ______________________________________________________________
