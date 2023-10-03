@@ -84,7 +84,7 @@ sudo apt install nginx -y
 sudo mkdir /opt/archive
 
 # edit permissions
-sudo chmod 773 /opt/archive
+sudo chmod 775 /opt/archive
 
 # create archive of all files from /etc/nginx/*
 sudo -u admin tar czvf /opt/archive/compressed.tar.gz /etc/nginx/*
