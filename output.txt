@@ -28,13 +28,13 @@ sudo apt install nginx -y
 sudo mkdir /opt/archive
 
 # edit permissions
-sudo chmod 773 /opt/archive
+sudo chmod 775 /opt/archive
 
 # create an archive of /etc/nginx/* directory in /opt/archive
 sudo -u admin tar czvf /opt/archive/compressed.tar.gz /etc/nginx/*
 
 # change ownership of /opt/archive and its contents to 'director:maintainer'
-sudo chown -R director:maintainer /opt/archive/
+sudo -u admin chown -R director:maintainer /opt/archive/
 
 # print out content of output file
 cat output.txt
