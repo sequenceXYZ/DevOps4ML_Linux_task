@@ -27,42 +27,37 @@ whoami
 outcome: ssm-user
 
 # create user 'admin'
-sudo useradd admin      
+useradd admin      
 outcome: useradd: group admin exists - if you want to add this user to that group, use -g.
 
 # add user 'admin' to 'admin' group
 sudo useradd -g admin admin   
 outcome: 'empty'
 
-# set password for user 'admin'
-sudo passwd admin      
-outcome: passwd: password updated successfully
-
-# check in which groups user is
-groups admin
-outcome: admin : admin
+# set passwordless user 'admin'
+sudo passwd -d admin      
 
 # create user 'director'
-sudo useradd director
+useradd director
 outcome: 'empty'
 
 # create group 'maintainer'
 sudo groupadd maintainer
 outcome: 'empty'
 
-# add user 'director' to 'maintainer' group
+# add users to 'maintainer' group
+sudo usermod -aG maintainer admin
 sudo usermod -aG maintainer director
 outcome: 'empty'
 
 # check in which groups users are
 groups admin
-outcome: admin : admin
+outcome: admin : admin maintainer
 groups director
 outcome: director : director maintainer
 
 # switch user
 su - admin
-oucome: Password:
 
 # check user
 whoami
