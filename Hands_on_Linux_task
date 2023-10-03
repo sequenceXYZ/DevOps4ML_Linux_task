@@ -85,11 +85,9 @@ outcome : /usr/sbin/nginx
 
 #create directory /opt/archive
 sudo mkdir /opt/archive
-outcome: drwxr-xr-x  2 root     root   4096 Oct  2 08:40 archive
 
 # edit permissions
 sudo chmod 773 /opt/archive
-drwxrwx-wx  2 root     root   4096 Oct  2 08:45 archive
 
 # create archive of all files from /etc/nginx/*
 sudo -u admin tar czvf /opt/archive/compressed.tar.gz /etc/nginx/*
