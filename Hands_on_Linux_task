@@ -81,11 +81,14 @@ outcome: -rwxrwxr-x 1 admin admin 6786 Oct  2 09:10 compressed.tar.gz
 # create file in /opt/archive
 sudo touch output.txt
 outcome: -rw-r----- 1 admin admin    0 Oct  2 11:27 output.txt
+
 # edit permissions
 sudo chmod 775 output.txt
 nano output.txt
+
 # save outputs of all commands in output.txt file
 tail /var/log/auth.log | tee -a output.txt
+
 # print out content of output file
 cat output.txt
 
