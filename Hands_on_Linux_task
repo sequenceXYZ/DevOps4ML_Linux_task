@@ -60,13 +60,6 @@ outcome: admin : admin
 groups director
 outcome: director : director maintainer
 
-# list all system users
-sudo cat /etc/passwd
-outcome:
-ssm-user:x:1001:1001::/home/ssm-user:/bin/sh
-admin:x:1002:116::/home/admin:/bin/sh
-director:x:1003:1003::/home/director:/bin/sh
-
 # switch user
 su - admin
 oucome: Password:
