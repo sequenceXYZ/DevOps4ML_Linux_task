@@ -1,11 +1,11 @@
-# Switch to the user 'admin'
+# switch to 'admin' user
 sudo su - admin
 
-# Create an archive of /etc/nginx/* directory in /opt/archive
+# create an archive of /etc/nginx/* directory in /opt/archive
 sudo -u admin tar czvf /opt/archive/compressed.tar.gz /etc/nginx/*
 
-# Change ownership of /opt/archive and its contents to 'director:maintainer'
+# change ownership of /opt/archive and its contents to 'director:maintainer'
 sudo chown -R director:maintainer /opt/archive/
 
-#View the contents of file 'output.txt'
-cat /opt/archive/output.txt
+# print out content of output file
+cat output.txt
