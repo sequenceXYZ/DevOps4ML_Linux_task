@@ -79,9 +79,6 @@ outcome: admin
 sudo apt update
 # sudo install nginx
 sudo apt install nginx -y
-# check if nginx is installed
-which nginx
-outcome : /usr/sbin/nginx
 
 #create directory /opt/archive
 sudo mkdir /opt/archive
@@ -97,7 +94,7 @@ outcome: -rw-rw-r-- 1 admin admin 6786 Oct  2 09:10 compressed.tar.gz
 sudo touch output.txt
 outcome: -rw-r----- 1 admin admin    0 Oct  2 11:27 output.txt
 # edit permissions
-sudo chmod 773 output.txt
+sudo chmod 775 output.txt
 nano output.txt
 # save outputs of all commands in output.txt file
 echo " " >> output.txt
