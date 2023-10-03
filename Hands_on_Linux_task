@@ -88,7 +88,7 @@ sudo chmod 775 /opt/archive
 
 # create archive of all files from /etc/nginx/*
 sudo -u admin tar czvf /opt/archive/compressed.tar.gz /etc/nginx/*
-outcome: -rw-rw-r-- 1 admin admin 6786 Oct  2 09:10 compressed.tar.gz
+outcome: -rw-rw-r-x 1 admin admin 6786 Oct  2 09:10 compressed.tar.gz
 
 # create file in /opt/archive
 sudo touch output.txt
