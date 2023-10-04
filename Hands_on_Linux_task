@@ -76,7 +76,7 @@ sudo chmod 775 /opt/archive
 
 # create archive of all files from /etc/nginx/*
 sudo -u admin tar czvf /opt/archive/compressed.tar.gz /etc/nginx/*
-outcome: -rwxrwxr-x 1 admin admin 6786 Oct  2 09:10 compressed.tar.gz
+outcome: -rw-rw-r-- 1 admin admin 6786 Oct  2 09:10 compressed.tar.gz
 
 # create file in /opt/archive
 sudo touch output.txt
@@ -85,6 +85,7 @@ outcome: -rw-r----- 1 admin admin    0 Oct  2 11:27 output.txt
 # edit permissions
 sudo chmod 775 output.txt
 nano output.txt
+outcome: -rwxrwxr-x 1 admin admin    0 Oct  2 11:56 output.txt
 
 # save outputs of all commands in output.txt file
 tail /var/log/auth.log | tee -a output.txt
@@ -93,7 +94,7 @@ tail /var/log/auth.log | tee -a output.txt
 cat output.txt
 
 # set user director and group maintainer of the directory and subdirectories /opt/archive
-sudo -u admin chown -R director:maintainer /opt/archive/
+sudo chown -R director:maintainer /opt/archive/
 -rwxrwxr-x 1 director maintainer 6786 Oct  2 12:25 compressed.tar.gz
 -rwxrwx-wx 1 director maintainer    0 Oct  2 12:31 output.txt
 ______________________________________________________________
